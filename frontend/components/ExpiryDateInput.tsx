@@ -1,6 +1,9 @@
-import React from 'react'
-
+import React, {useState} from 'react'
+interface Props {
+    handleChange: (e: string) => void; 
+}
 function ExpiryDateInput({handleChange}:any) {
+    const [asd, setAsd] = useState()
   return (
     <div className="form-control w-full max-w-xs">
       <label className="label">
@@ -10,7 +13,7 @@ function ExpiryDateInput({handleChange}:any) {
         type="datetime-local"
         placeholder="Type here"
         className="input input-bordered w-full max-w-xs"
-        onChange={handleChange}
+        onChange={(e)=>{handleChange(e.target.value)}}
         min={1}
         required
       />

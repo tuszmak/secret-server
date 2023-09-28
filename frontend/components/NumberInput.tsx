@@ -1,5 +1,7 @@
 import React from 'react'
-
+interface Props {
+    handleChange: (e: number) => void; 
+}
 function NumberInput({handleChange} : any) {
   return (
     <div className="form-control w-full max-w-xs">
@@ -10,7 +12,7 @@ function NumberInput({handleChange} : any) {
         type="number"
         placeholder="Type here"
         className="input input-bordered w-full max-w-xs"
-        onChange={handleChange}
+        onChange={(e)=>handleChange(e.target.value)}
         min={1}
         required
       />

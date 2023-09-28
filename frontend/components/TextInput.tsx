@@ -1,6 +1,10 @@
 import React from "react";
 
-function TextInput({handleChange} : any) {
+interface Props {
+    handleChange: (e: string) => void; 
+}
+
+function TextInput({handleChange} : Props) {
   return (
     <div className="form-control w-full max-w-xs">
       <label className="label">
@@ -10,7 +14,7 @@ function TextInput({handleChange} : any) {
         type="text"
         placeholder="Type your secret here"
         className="input input-bordered w-full max-w-xs"
-        onChange={handleChange}
+        onChange={(e)=>handleChange(e.target.value)}
         required
       />
     </div>
