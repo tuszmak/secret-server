@@ -12,10 +12,15 @@ function save() {
   const [secret, setSecret] = useState<string>("");
   const [numberOfVisits, setNumberOfVisits] = useState<number>(0);
   const [expiryDate, setExpiryDate] = useState<string>("");
-  const handleSubmit = ()=>{
+  const handleSubmit = async()=>{
     const data : SecretCreationData = {
         secret, numberOfVisits, expiryDate
     } 
+    const response = await fetch("/createSecret",{
+      method: "POST"
+    })
+    if(response.ok) console.log("yay!");
+    
   }
   
   return (
