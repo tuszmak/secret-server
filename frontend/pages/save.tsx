@@ -16,8 +16,9 @@ function save() {
     const data : SecretCreationData = {
         secret, numberOfVisits, expiryDate
     } 
-    const response = await fetch("/createSecret",{
-      method: "POST"
+    const response = await fetch("/api/createSecret",{
+      method: "POST",
+      body: JSON.stringify(data)
     })
     if(response.ok) console.log("yay!");
     
