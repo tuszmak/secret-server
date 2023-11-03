@@ -3,6 +3,6 @@ sys.path.append('../')
 from model.secretData import secretData
 
 def manageSecret(data : secretData):
-    if():
+    if(True):
         print("Fetch is cool!")
-        print(data.text)
+        print(data.expDate.minute)
