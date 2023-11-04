@@ -4,7 +4,7 @@ import json
 # setting path
 
 from flask import Flask, Response, request
-from manageSecret.manageSecret import manageSecret
+from manageSecret.manageSecret import createSecret
 from model.secretData import secretData
 from datetime import datetime
 sys.path.append('../')
@@ -24,6 +24,6 @@ def createSecret():
     print(data.get("secret"))
     parsedDate = datetime.fromisoformat( data.get("expiryDate"))
     newSecretData = secretData(data.get("secret"),data.get("numberOfVisits"), parsedDate)
-    manageSecret(newSecretData)
+    createSecret(newSecretData)
     return Response("igen", status=200, mimetype='application/json')
     # data = secretData("igen", 5, "")
