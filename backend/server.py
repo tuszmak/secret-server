@@ -4,12 +4,13 @@ import json
 # setting path
 
 from flask import Flask, Response, request
-from manageSecret.manageSecret import createSecret
-from model.secretData import secretData
+from manageSecret.manageSecret import createSecretDAO
+from model.secretData import SecretData
 from datetime import datetime
+from db.init_db import init
 sys.path.append('../')
 app = Flask(__name__)
-
+conn = init()
 @app.route("/")
 def hello_world():
     return "<p>Hello, World!</p>"
@@ -17,13 +18,11 @@ def hello_world():
 def getSecret():
     print("a")
 @app.post("/api/secret")
-def createSecret():
+def createSecretEndpoint():
     print("Fetch is here!")
     
     data = json.loads(request.data.decode()) #This is a dictionary. 
-    print(data.get("secret"))
     parsedDate = datetime.fromisoformat( data.get("expiryDate"))
-    newSecretData = secretData(data.get("secret"),data.get("numberOfVisits"), parsedDate)
-    createSecret(newSecretData)
+    newSecretData = SecretData(data.get("secret"),data.get("numberOfVisits"), parsedDate)
+    createSecretDAO(newSecretData)
     return Response("igen", status=200, mimetype='application/json')
-    # data = secretData("igen", 5, "")

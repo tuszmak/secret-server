@@ -1,9 +1,10 @@
 import sys
 sys.path.append('../')
-from model.secretData import secretData
+from model.secretData import SecretData
+from db.createSecret import createSecret
 
-def createSecret(data : secretData):
-    if(data.text != None & data.numberOfVisits != 0 & data.expDate!=None):
-        print("Fetch is cool!")
-        print(data.expDate.minute)
+
+def createSecretDAO(data : SecretData):
+    if(data.text != "" and data.numberOfVisits != 0 and data.expDate!=None):
+        createSecret(data)
     else: print("Something is missing :c")

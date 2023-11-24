@@ -1,6 +1,6 @@
 from datetime import datetime
 
-class secretData:
+class SecretData:
     def __init__(self,text:str,numberOfVisits:int, expDate:datetime):
         self.text = text
         self.numberOfVisits = numberOfVisits
