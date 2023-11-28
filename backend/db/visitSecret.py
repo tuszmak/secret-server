@@ -7,7 +7,6 @@ def getSecretFromDb(hash : str):
     conn = getConn()
     cur = conn.cursor()
     secret = []
-    print(hash)
     getQuery = "SELECT secret FROM secrets WHERE link = %s;"
     try:
               cur.execute(getQuery, (hash,)) # The execute wants a tuple as parameter, that's the weird parameters.

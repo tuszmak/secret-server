@@ -5,6 +5,3 @@ class SecretData:
         self.text = text
         self.numberOfVisits = numberOfVisits
         self.expDate = expDate
-
-def igen():
-    print("a")
