@@ -8,6 +8,7 @@ from manageSecret.manageSecret import createSecretDAO
 from model.secretData import SecretData
 from datetime import datetime
 from db.init_db import init
+from db.visitSecret import getSecretFromDb
 sys.path.append('../')
 app = Flask(__name__)
 conn = init()
@@ -25,4 +26,10 @@ def createSecretEndpoint():
     parsedDate = datetime.fromisoformat( data.get("expiryDate"))
     newSecretData = SecretData(data.get("secret"),data.get("numberOfVisits"), parsedDate)
     createSecretDAO(newSecretData)
+    return Response("igen", status=200, mimetype='application/json')
+@app.post("/api/getSecret")
+def getSecretByHash():
+    data = json.loads(request.data.decode())
+    parsedHash = data.get("hash")
+    getSecretFromDb(parsedHash)
     return Response("igen", status=200, mimetype='application/json')
