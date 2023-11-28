@@ -31,5 +31,6 @@ def createSecretEndpoint():
 def getSecretByHash():
     data = json.loads(request.data.decode())
     parsedHash = data.get("hash")
-    getSecretFromDb(parsedHash)
-    return Response("igen", status=200, mimetype='application/json')
+    secret = getSecretFromDb(parsedHash)
+    responseData = {"secret": secret}
+    return Response(json.dumps(responseData), status=200, mimetype='application/json')
