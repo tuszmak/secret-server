@@ -3,16 +3,13 @@ import sys
 
 
 from dotenv import load_dotenv
+from .getConn import getConn
 import psycopg2
 load_dotenv()
 def init():
         
         print(os.environ.get('DB_USERNAME'))
-        conn = psycopg2.connect(
-                host="localhost",
-                database="secret-server",
-                user=os.environ['DB_USERNAME'],
-                password=os.environ['DB_PASSWORD'])
+        conn = getConn()
         
         # Open a cursor to perform database operations
         cur = conn.cursor()

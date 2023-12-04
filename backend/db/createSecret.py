@@ -1,17 +1,10 @@
-import os
-import sys
 import traceback
-from dotenv import load_dotenv
-from model.secretData import SecretData
-import psycopg2
-load_dotenv()
+from model import SecretData
+from .getConn import getConn
+
 def createSecret(data: SecretData):
         print("Insert data")
-        conn = psycopg2.connect(
-                host="localhost",
-                database="secret-server",
-                user=os.environ['DB_USERNAME'],
-                password=os.environ['DB_PASSWORD'])
+        conn = getConn()
         
         # Open a cursor to perform database operations
         cur = conn.cursor()
