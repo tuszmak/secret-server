@@ -17,7 +17,7 @@ conn = init()
 def hello_world():
     return "<p>Hello, World!</p>"
 
-@app.post("/api/secret")
+@app.post("/api/v1/secret")
 def createSecretEndpoint():
     data = json.loads(request.data.decode()) #This is a dictionary. 
     parsedDate = datetime.fromisoformat( data.get("expiryDate"))
@@ -25,10 +25,10 @@ def createSecretEndpoint():
     createSecretDAO(newSecretData)
     return Response("igen", status=200, mimetype='application/json')
 
-@app.post("/api/getSecret")
+@app.post("/api/v1/getSecret")
 def getSecretByHash():
     data = json.loads(request.data.decode())
-    parsedHash = data.get("hash")
+    parsedHash = data.get('hash')
     secret = getSecretFromDb(parsedHash)
     responseData = {"secret": secret}
     return Response(json.dumps(responseData), status=200, mimetype='application/json')
