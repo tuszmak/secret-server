@@ -13,10 +13,6 @@ sys.path.append('../')
 app = Flask(__name__)
 conn = init()
 
-@app.route("/")
-def hello_world():
-    return "<p>Hello, World!</p>"
-
 @app.post("/api/v1/secret")
 def createSecretEndpoint():
     data = json.loads(request.data.decode()) #This is a dictionary. 
