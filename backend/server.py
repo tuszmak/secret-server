@@ -5,16 +5,18 @@ import json
 
 from flask import Flask, Response, request
 from manageSecret.manageSecret import createSecretDAO
-from model.secretData import SecretData
+from model import SecretData
 from datetime import datetime
-from db.init_db import init
-from db.visitSecret import getSecretFromDb
+from db import init
+from db import getSecretFromDb
 sys.path.append('../')
 app = Flask(__name__)
 conn = init()
+
 @app.route("/")
 def hello_world():
     return "<p>Hello, World!</p>"
+
 @app.post("/api/secret")
 def createSecretEndpoint():
     data = json.loads(request.data.decode()) #This is a dictionary. 
@@ -22,6 +24,7 @@ def createSecretEndpoint():
     newSecretData = SecretData(data.get("secret"),data.get("numberOfVisits"), parsedDate)
     createSecretDAO(newSecretData)
     return Response("igen", status=200, mimetype='application/json')
+
 @app.post("/api/getSecret")
 def getSecretByHash():
     data = json.loads(request.data.decode())

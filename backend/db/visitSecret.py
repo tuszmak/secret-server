@@ -1,16 +1,18 @@
 
 import psycopg2
 import traceback
-from db.getConn import getConn
+from .getConn import getConn
 
 def getSecretFromDb(hash : str):
     conn = getConn()
     cur = conn.cursor()
     secret = []
     getQuery = "SELECT secret FROM secrets WHERE link = %s;"
+    #TODO Update query to reduce visits by 1  
     try:
               cur.execute(getQuery, (hash,)) # The execute wants a tuple as parameter, that's the weird parameters.
               secret = cur.fetchall()
+              
     except Exception: 
               print(traceback.print_exc())
               raise Exception("Select query can't be executed")

@@ -1,7 +1,7 @@
 import sys
 sys.path.append('../')
-from model.secretData import SecretData
-from db.createSecret import createSecret
+from model import SecretData
+from db import createSecret
 
 
 def createSecretDAO(data : SecretData):
