@@ -10,10 +10,10 @@ def createSecret(data: SecretData):
         cur = conn.cursor()
         
         # Execute a command: this creates a new table
-        insert_query = "INSERT INTO secrets (link, rem_visits, expiry_date) VALUES (%s, %s, %s);"
+        insert_query = "INSERT INTO secrets (link, secret, rem_visits, expiry_date) VALUES (%s, %s, %s, %s);"
         didWork = False
         try:
-                cur.execute(insert_query, (data.text, data.numberOfVisits, data.expDate))
+                cur.execute(insert_query, (data.text, data.text, data.numberOfVisits, data.expDate))
                 conn.commit()
                 didWork= True
         except Exception: 

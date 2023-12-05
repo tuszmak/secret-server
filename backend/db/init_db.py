@@ -17,6 +17,7 @@ def init():
         # Execute a command: this creates a new table
         cur.execute('CREATE TABLE IF NOT EXISTS secrets (id serial PRIMARY KEY,'
                                          'link varchar (150) NOT NULL,'
+                                         'secret varchar (150) NOT NULL,'
                                          'rem_visits integer NOT NULL,'
                                          'expiry_date timestamp NOT NULL);'
                                          )
