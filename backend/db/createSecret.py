@@ -1,6 +1,7 @@
 import traceback
 from model import SecretData
 from .getConn import getConn
+from encrypt import generateLink, encryptSecret
 
 def createSecret(data: SecretData):
         print("Insert data")
@@ -13,7 +14,7 @@ def createSecret(data: SecretData):
         insert_query = "INSERT INTO secrets (link, secret, rem_visits, expiry_date) VALUES (%s, %s, %s, %s);"
         didWork = False
         try:
-                cur.execute(insert_query, (data.text, data.text, data.numberOfVisits, data.expDate))
+                cur.execute(insert_query, (generateLink(), encryptSecret(data.text), data.numberOfVisits, data.expDate))
                 conn.commit()
                 didWork= True
         except Exception: 
