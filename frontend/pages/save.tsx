@@ -1,8 +1,8 @@
 import BackButton from "@/components/BackButton";
 import ExpiryDateInput from "@/components/ExpiryDateInput";
 import NumberInput from "@/components/NumberInput";
+import SecretCard from "@/components/SecretCard";
 import TextInput from "@/components/TextInput";
-import Link from "next/link";
 import React, { useState } from "react";
 
 type SecretCreationData = {
@@ -34,19 +34,26 @@ function save() {
 
   return link ? (
     <div>
-      <div><BackButton></BackButton></div>
-      Your secret link is: {link}. Keep it a secret!</div>
+      <div>
+        <BackButton></BackButton>
+      </div>
+      <div className="flex flex-col justify-center items-center h-screen">
+        <SecretCard link={link} />
+      </div>
+    </div>
   ) : (
     <div>
-      <div><BackButton></BackButton></div>
+      <div>
+        <BackButton></BackButton>
+      </div>
       <div className="flex flex-col items-center gap-3">
-      <TextInput handleChange={(e: string) => setSecret(e)} />
-      <NumberInput handleChange={(e: number) => setNumberOfVisits(e)} />
-      <ExpiryDateInput handleChange={(e: string) => setExpiryDate(e)} />
-      <button className="btn btn-primary mt-8" onClick={handleSubmit}>
-        Submit
-      </button>
-    </div>
+        <TextInput handleChange={(e: string) => setSecret(e)} />
+        <NumberInput handleChange={(e: number) => setNumberOfVisits(e)} />
+        <ExpiryDateInput handleChange={(e: string) => setExpiryDate(e)} />
+        <button className="btn btn-primary mt-8" onClick={handleSubmit}>
+          Submit
+        </button>
+      </div>
     </div>
   );
 }
