@@ -19,7 +19,7 @@ def createSecretEndpoint():
     parsedDate = datetime.fromisoformat( data.get("expiryDate"))
     newSecretData = SecretData(data.get("secret"),data.get("numberOfVisits"), parsedDate)
     link = createSecretDAO(newSecretData)
-    return Response(link, status=200, mimetype='application/json')
+    return Response(link, status=200, mimetype='text/html')
 
 @app.post("/api/v1/getSecret")
 def getSecretByHash():
