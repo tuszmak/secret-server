@@ -1,3 +1,4 @@
+import BackButton from "@/components/BackButton";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 
@@ -20,18 +21,14 @@ export default function getSecret() {
   };
   return secretString ? (
     <div>
-      <button>
-        <Link href="/">Back</Link>
-      </button>
+      <BackButton></BackButton>
       <div>
         Your secret is: {secretString}
       </div>
     </div>
   ) : (
-    <div>
-      <button>
-        <Link href="/">Back</Link>
-      </button>
+    <div className="">
+      <BackButton></BackButton>
       <label htmlFor="hash">Input hash</label>
       <input
         type="text"
