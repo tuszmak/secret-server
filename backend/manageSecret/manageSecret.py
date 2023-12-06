@@ -6,6 +6,6 @@ from db import createSecret
 
 def createSecretDAO(data : SecretData):
     if(data.text != "" and data.numberOfVisits != 0 and data.expDate!=None):
-        createSecret(data)
+        return createSecret(data)
     else: 
         raise Exception("Something is missing :c")
