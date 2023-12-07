@@ -21,25 +21,37 @@ export default function getSecret() {
   };
   return secretString ? (
     <div>
-      <BackButton></BackButton>
       <div>
-        Your secret is: {secretString}
+        <BackButton></BackButton>
+      </div>
+      <div className="h-screen flex justify-center items-center">
+        <p className="text-4xl">Your secret is: {secretString}</p>
       </div>
     </div>
   ) : (
-    <div className="">
-      <BackButton></BackButton>
-      <label htmlFor="hash">Input hash</label>
-      <input
-        type="text"
-        name="hash"
-        id="hash"
-        onChange={(e: React.FormEvent<HTMLInputElement>) =>
-          setHash(e.currentTarget.value)
-        }
-        value={hash}
-      />
-      <button onClick={() => getSecret()}>Submit</button>
+    <div>
+      <div>
+        <BackButton></BackButton>
+      </div>
+      <div className="flex flex-col items-center">
+        <label htmlFor="hash">
+          <h1>Type your code here</h1>
+        </label>
+        <input
+          type="text"
+          className="input input-bordered w-full max-w-xs mt-6"
+          placeholder="Type here"
+          name="hash"
+          id="hash"
+          onChange={(e: React.FormEvent<HTMLInputElement>) =>
+            setHash(e.currentTarget.value)
+          }
+          value={hash}
+        />
+        <button className="btn btn-primary" onClick={() => getSecret()}>
+          Submit
+        </button>
+      </div>
     </div>
   );
 }
