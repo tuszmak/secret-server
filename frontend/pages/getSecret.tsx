@@ -17,6 +17,9 @@ export default function getSecret() {
       },
     });
     const secret: Secret = await response.json();
+    if(!secret.secret){
+      alert("Your code doesn't have a secret")
+    }
     setSecretString(secret.secret);
   };
   return secretString ? (

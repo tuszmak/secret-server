@@ -8,7 +8,8 @@ def generateLink():
     return shortuuid.uuid()
 def decryptSecret(input: str):
     secret :str = db.getSecretFromDb(input)
-    if(secret != ""):
+    if(secret != "" and secret!= None):
         secretBytes = b64decode(secret.encode())
         foo = secretBytes.decode("ascii")
         return foo
+    return ""
