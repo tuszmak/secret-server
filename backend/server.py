@@ -13,19 +13,15 @@ sys.path.append('../')
 app = Flask(__name__)
 conn = init()
 
-@app.route("/")
-def hello_world():
-    return "<p>Hello, World!</p>"
-
-@app.post("/api/secret")
+@app.post("/api/v1/secret")
 def createSecretEndpoint():
     data = json.loads(request.data.decode()) #This is a dictionary. 
     parsedDate = datetime.fromisoformat( data.get("expiryDate"))
     newSecretData = SecretData(data.get("secret"),data.get("numberOfVisits"), parsedDate)
-    createSecretDAO(newSecretData)
-    return Response("igen", status=200, mimetype='application/json')
+    link = createSecretDAO(newSecretData)
+    return Response(link, status=200, mimetype='text/html')
 
-@app.post("/api/getSecret")
+@app.post("/api/v1/getSecret")
 def getSecretByHash():
     data = json.loads(request.data.decode())
     parsedHash = data.get("hash")

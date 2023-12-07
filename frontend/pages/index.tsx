@@ -23,7 +23,7 @@ export default function Home() {
               </p>
               <div className="flex justify-evenly">
                 <button className="btn btn-primary"><Link href="/save">Create secret</Link></button>
-                <button className="btn btn-primary">View secret</button>
+                <button className="btn btn-primary"><Link href="/getSecret">View secret</Link></button>
               </div>
             </div>
           </div>
