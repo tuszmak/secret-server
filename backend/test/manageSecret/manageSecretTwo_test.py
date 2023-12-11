@@ -1,11 +1,10 @@
-from model.secretData import SecretData
+from model import SecretData
 from datetime import datetime
 import pytest
-from db import createSecret
 from manageSecret.manageSecret import createSecretDAO
 from unittest.mock import patch, Mock
 
-class TestManageSecret():
+class TestManageSecret_Two():
     def test_create_secret_without_text(self):
         foo = SecretData("", 5, datetime.now())
         with pytest.raises(Exception):
