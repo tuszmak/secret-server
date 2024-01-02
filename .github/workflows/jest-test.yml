@@ -1,4 +1,4 @@
-name: Next.js build
+name: Jest test
 
 on: [pull_request, push]
 
