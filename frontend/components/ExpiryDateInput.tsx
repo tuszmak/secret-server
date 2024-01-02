@@ -1,15 +1,16 @@
 import React, {useState} from 'react'
+
 interface Props {
     handleChange: (e: string) => void; 
 }
 function ExpiryDateInput({handleChange}:any) {
-    const [asd, setAsd] = useState()
   return (
     <div className="form-control w-full max-w-xs">
-      <label className="label">
+      <label className="label" data-testid="dateLabel">
         <span className="label-text text-xl">When should it expire naturally?</span>
       </label>
       <input
+        data-testid="datetime-input"
         type="datetime-local"
         placeholder="Type here"
         className="input input-bordered w-full max-w-xs"
