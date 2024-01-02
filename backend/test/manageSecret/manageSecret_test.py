@@ -4,7 +4,7 @@ import pytest
 from manageSecret.manageSecret import createSecretDAO
 from unittest.mock import patch, Mock
 
-class TestManageSecret_Two():
+class Test_ManageSecret():
     def test_create_secret_without_text(self):
         foo = SecretData("", 5, datetime.now())
         with pytest.raises(Exception):
