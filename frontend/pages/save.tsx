@@ -10,7 +10,7 @@ type SecretCreationData = {
   numberOfVisits: number;
   expiryDate: string;
 };
-function save() {
+function Save() {
   const [secret, setSecret] = useState<string>("");
   const [numberOfVisits, setNumberOfVisits] = useState<number>(0);
   const [expiryDate, setExpiryDate] = useState<string>("");
@@ -58,4 +58,4 @@ function save() {
   );
 }
 
-export default save;
+export default Save;
