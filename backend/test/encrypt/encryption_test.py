@@ -6,7 +6,6 @@ from unittest.mock import patch, Mock
 
 
 class Test_Encryption():
-
     # EncryptSecret tests
     def test_encrypt_secret(self):
         foo = "secret"
@@ -14,6 +13,7 @@ class Test_Encryption():
         actual = encryptSecret(foo)
         assert expected == actual
     #decryptSecret tests
+    #The input params are redundant, because I don't test the db queries here.
     @patch(target="encrypt.encryption.db.getSecretFromDb")
     def test_decrypt_with_empty_string(self, mock_getSecretFromDb : Mock):
         mock_getSecretFromDb.return_value = ""
@@ -28,11 +28,22 @@ class Test_Encryption():
         actual = decryptSecret("foo")
         assert expected == actual
         mock_getSecret.assert_called_once()
-
-        
     @patch(target="encrypt.encryption.db.getSecretFromDb")
     def test_decrypt_with_number(self, mock_getSecret : Mock):
         mock_getSecret.return_value = 5
         with pytest.raises(Exception) as exc_info:
+            decryptSecret("foo")
             assert exc_info == "This data is not Base64!"
+    @patch(target="encrypt.encryption.db.getSecretFromDb")
+    def test_decrypt_with_not_base64(self, mock_getSecret : Mock):
+        mock_getSecret.return_value = "foo"
+        with pytest.raises(Exception) as exc_info:
+            decryptSecret("foo")
+            assert exc_info == "This data is not Base64!"
+    @patch(target="encrypt.encryption.db.getSecretFromDb")
+    def test_decrypt_with_base64(self, mock_getSecret : Mock):
+        mock_getSecret.return_value = "YXNk"
+        expected = "asd"
+        actual = decryptSecret("foo")
+        assert expected == actual
 
