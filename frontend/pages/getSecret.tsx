@@ -2,7 +2,7 @@ import BackButton from "@/components/BackButton";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 
-export default function getSecret() {
+export default function GetSecret() {
   const [hash, setHash] = useState<string>("");
   const [secretString, setSecretString] = useState<string>("");
   const getSecret = async () => {
