@@ -9,7 +9,10 @@ def generateLink():
 def decryptSecret(input: str):
     secret :str = db.getSecretFromDb(str(input))
     if(secret != "" and secret!= None):
-        secretBytes = b64decode(secret.encode())
-        foo = secretBytes.decode("ascii")
+        try:
+            secretBytes = b64decode(secret.encode())
+            foo = secretBytes.decode("ascii")
+        except:
+            raise Exception("This data is not Base64!")
         return foo
     return ""
