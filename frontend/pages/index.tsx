@@ -22,8 +22,8 @@ export default function Home() {
                 repudiandae et a id nisi.
               </p>
               <div className="flex justify-evenly">
-                <button className="btn btn-primary"><Link href="/save">Create secret</Link></button>
-                <button className="btn btn-primary"><Link href="/getSecret">View secret</Link></button>
+                <Link href="/save"><button className="btn btn-primary">Create secret</button></Link>
+                <Link href="/getSecret"><button className="btn btn-primary">View secret</button></Link>
               </div>
             </div>
           </div>
