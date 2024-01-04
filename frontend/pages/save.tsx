@@ -38,7 +38,7 @@ function Save() {
         <BackButton></BackButton>
       </div>
       <div className="flex flex-col justify-center items-center h-screen">
-        <SecretCard link={link} />
+        <SecretCard link={link} data-testid="secretCard" />
       </div>
     </div>
   ) : (
@@ -50,7 +50,7 @@ function Save() {
         <TextInput handleChange={(e: string) => setSecret(e)} />
         <NumberInput handleChange={(e: number) => setNumberOfVisits(e)} />
         <ExpiryDateInput handleChange={(e: string) => setExpiryDate(e)} />
-        <button className="btn btn-primary mt-8" onClick={handleSubmit}>
+        <button className="btn btn-primary mt-8" onClick={handleSubmit} data-testid="submitButton">
           Submit
         </button>
       </div>
