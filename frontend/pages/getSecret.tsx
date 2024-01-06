@@ -50,6 +50,7 @@ export default function GetSecret() {
             setHash(e.currentTarget.value)
           }
           value={hash}
+          required
         />
         <button className="btn btn-primary" onClick={() => getSecret()}>
           Submit
