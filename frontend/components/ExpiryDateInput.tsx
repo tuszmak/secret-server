@@ -3,7 +3,7 @@ import React, {useState} from 'react'
 interface Props {
     handleChange: (e: string) => void; 
 }
-function ExpiryDateInput({handleChange}:any) {
+function ExpiryDateInput({handleChange}: Props) {
   return (
     <div className="form-control w-full max-w-xs">
       <label className="label" data-testid="dateLabel">

@@ -10,6 +10,7 @@
 *** for contributors-url, forks-url, etc. This is an optional, concise syntax you may use.
 *** https://www.markdownguide.org/basic-syntax/#reference-style-links
 -->
+[![Build status](https://github.com/tuszmak/secret-server/actions/workflows/node-build.yml/badge.svg?branch=main&event=push)](https://github.com/tuszmak/secret-server/actions/workflows/node-build.yml)
 [![Contributors][contributors-shield]][contributors-url]
 [![Forks][forks-shield]][forks-url]
 [![Stargazers][stars-shield]][stars-url]
