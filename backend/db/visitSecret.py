@@ -14,16 +14,13 @@ def getSecretFromDb(hash : str):
               secret = cur.fetchall()
               
     except Exception: 
-              print(traceback.print_exc())
               raise Exception("Select query can't be executed")
-              
-      
     cur.close()
     
     if(len(secret) == 0):
       return None
     elif(len(secret) > 1):
-      raise Exception("WTF there are two secrets with the same hash.")
+      raise Exception("There are multiple secrets with the same hash.")
     else:
       return secret[0][0]
             
