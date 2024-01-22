@@ -8,14 +8,12 @@ def createSecret(data: SecretData, envVariables):
         conn = getConn(envVariables)
         # Open a cursor to perform database operations
         cur = conn.cursor()
-        
-        link = ''
+        link = generateLink()
         try:
-                link = generateLink()
-                cur.execute(insert_query, (link, encryptSecret(data.text), data.numberOfVisits, data.expDate))
-                conn.commit()
-        except Exception: 
-                raise Exception("Something's wrong with the insert")      
-        cur.close()
+                with conn.cursor() as cur:
+                        cur.execute(insert_query, (link, encryptSecret(data.text), data.numberOfVisits, data.expDate))
+                        conn.commit() 
+        except Exception:
+                raise
         return link
         
