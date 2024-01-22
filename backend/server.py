@@ -1,30 +1,26 @@
 
-import sys
 import json
-# setting path
-
 from flask import Flask, Response, request
-from manageSecret.manageSecret import createSecretDAO
-from model import SecretData
-from datetime import datetime
+from service import createSecretService
+from dotenv import dotenv_values
 from db import init
 from encrypt import decryptSecret
-sys.path.append('../')
-app = Flask(__name__)
-conn = init()
 
+
+app = Flask(__name__)
+envVariables = dotenv_values("./db/.env")
 @app.post("/api/v1/secret")
 def createSecretEndpoint():
     data = json.loads(request.data.decode()) #This is a dictionary. 
-    parsedDate = datetime.fromisoformat( data.get("expiryDate"))
-    newSecretData = SecretData(data.get("secret"),data.get("numberOfVisits"), parsedDate)
-    link = createSecretDAO(newSecretData)
+    link = createSecretService.createSecretDAO(data, envVariables)
     return Response(link, status=200, mimetype='text/html')
-
 @app.post("/api/v1/getSecret")
 def getSecretByHash():
-    data = json.loads(request.data.decode())
+    data : dict = json.loads(request.data.decode())
     parsedHash = data.get("hash")
     secret = decryptSecret(parsedHash)
     responseData = {"secret": secret}
     return Response(json.dumps(responseData), status=200, mimetype='application/json')
+if(__name__ == '__main__'):
+    app.run(debug=True)
+    init(envVariables)
