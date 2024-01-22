@@ -2,7 +2,7 @@ import traceback
 from model import SecretData
 from .getConn import getConn
 from encrypt import generateLink, encryptSecret
-from queries import insert_query
+from db.queries import insert_query
 
 def createSecret(data: SecretData, envVariables):
         conn = getConn(envVariables)
