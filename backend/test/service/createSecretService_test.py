@@ -4,7 +4,7 @@ import pytest
 from service import createSecretService
 from unittest.mock import patch, Mock
 
-class Test_ManageSecret():
+class Test_CreateSecretService():
     def test_create_secret_without_text(self):
         foo = SecretData("", 5, datetime.now())
         with pytest.raises(Exception):
