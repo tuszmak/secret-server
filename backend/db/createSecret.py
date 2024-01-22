@@ -2,25 +2,20 @@ import traceback
 from model import SecretData
 from .getConn import getConn
 from encrypt import generateLink, encryptSecret
+from queries import insert_query
 
-def createSecret(data: SecretData):
-        print("Insert data")
-        conn = getConn()
-        
+def createSecret(data: SecretData, envVariables):
+        conn = getConn(envVariables)
         # Open a cursor to perform database operations
         cur = conn.cursor()
         
-        # Execute a command: this creates a new table
-        insert_query = "INSERT INTO secrets (link, secret, rem_visits, expiry_date) VALUES (%s, %s, %s, %s);"
         link = ''
         try:
                 link = generateLink()
                 cur.execute(insert_query, (link, encryptSecret(data.text), data.numberOfVisits, data.expDate))
                 conn.commit()
         except Exception: 
-                print(traceback.print_exc())
-                print("Something's wrong with insert")
-        
+                raise Exception("Something's wrong with the insert")      
         cur.close()
         return link
         
