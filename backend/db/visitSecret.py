@@ -3,8 +3,8 @@ import psycopg2
 from .getConn import getConn
 from db.queries import getQuery
 
-def getSecretFromDb(hash : str):
-    conn = getConn()
+def getSecretFromDb(hash : str, envVariables):
+    conn = getConn(envVariables)
     cur = conn.cursor()
     secret = []
     #TODO Update query to reduce visits by 1  
