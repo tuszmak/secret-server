@@ -1,8 +1,8 @@
 import pytest
-from encrypt.encryption import encryptSecret, decryptSecret
 from base64 import b64encode, b64decode
 from db.visitSecret import getSecretFromDb
 from unittest.mock import patch, Mock
+from encrypt.encryption import decryptSecret,encryptSecret
 
 
 class Test_Encryption():
@@ -14,36 +14,29 @@ class Test_Encryption():
         assert expected == actual
     #decryptSecret tests
     #The input params are redundant, because I don't test the db queries here.
-    @patch(target="encrypt.encryption.db.getSecretFromDb")
-    def test_decrypt_with_empty_string(self, mock_getSecretFromDb : Mock):
-        mock_getSecretFromDb.return_value = ""
-        expected = ""
-        actual = decryptSecret("foo")
+    def test_decrypt_with_empty_string(self):
+        expected = None
+        actual = decryptSecret("")
         assert expected == actual
-        mock_getSecretFromDb.assert_called_once()
-    @patch(target="encrypt.encryption.db.getSecretFromDb")
-    def test_decrypt_with_none(self, mock_getSecret : Mock):
-        mock_getSecret.return_value = None
-        expected = ""
-        actual = decryptSecret("foo")
+
+    def test_decrypt_with_none(self):
+        expected = None
+        actual = decryptSecret(None)
         assert expected == actual
-        mock_getSecret.assert_called_once()
-    @patch(target="encrypt.encryption.db.getSecretFromDb")
-    def test_decrypt_with_number(self, mock_getSecret : Mock):
-        mock_getSecret.return_value = 5
+
+    
+    def test_decrypt_with_number(self):
+        with pytest.raises(Exception) as exc_info:
+            decryptSecret(5)
+            assert exc_info == "This data is not Base64!"
+
+    def test_decrypt_with_not_base64(self):
         with pytest.raises(Exception) as exc_info:
             decryptSecret("foo")
             assert exc_info == "This data is not Base64!"
-    @patch(target="encrypt.encryption.db.getSecretFromDb")
-    def test_decrypt_with_not_base64(self, mock_getSecret : Mock):
-        mock_getSecret.return_value = "foo"
-        with pytest.raises(Exception) as exc_info:
-            decryptSecret("foo")
-            assert exc_info == "This data is not Base64!"
-    @patch(target="encrypt.encryption.db.getSecretFromDb")
-    def test_decrypt_with_base64(self, mock_getSecret : Mock):
-        mock_getSecret.return_value = "YXNk"
-        expected = "asd"
-        actual = decryptSecret("foo")
+
+    def test_decrypt_with_base64(self):
+        expected = {"secret": "asd"}
+        actual = decryptSecret("YXNk")
         assert expected == actual
 
