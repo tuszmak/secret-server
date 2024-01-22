@@ -22,4 +22,4 @@ def getSecretFromDb(hash : str, envVariables):
       raise Exception("There are multiple secrets with the same hash.")
     else:
       return secret[0][0]
-            
+              
