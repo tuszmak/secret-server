@@ -1,6 +1,6 @@
 import pytest
 from base64 import b64encode, b64decode
-from backend.db.get_secret import getSecretFromDb
+from db.get_secret import getSecretFromDb
 from unittest.mock import patch, Mock
 from encrypt.encryption import decryptSecret,encryptSecret
 
