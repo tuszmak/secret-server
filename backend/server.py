@@ -6,6 +6,14 @@ from dotenv import dotenv_values
 from db import init
 
 app = Flask(__name__)
+@app.get("/api/v1/secret")
+def foo():
+    # data = json.loads(request.data.decode()) #This is a dictionary. 
+    try:
+        # link = createSecretService.create_secret_dao(data, envVariables)
+        return Response(json.dumps({"asd": "asd"}), status=200, mimetype='text/html')
+    except Exception as e:
+        return Response(str(e), status=400, mimetype='text/html')  
 @app.post("/api/v1/secret")
 def createSecretEndpoint():
     data = json.loads(request.data.decode()) #This is a dictionary. 
