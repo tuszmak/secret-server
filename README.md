@@ -101,7 +101,7 @@ Do you have a secret that you don't want to leak? Use this website to store and 
   pip install -r requirements.txt
 ```
 4. Create an empty PostgreSQL database.
-5. In your backend/db folder you can find a "replace_this_for_dotenv.env" file. 
+5. In your backend/db folder you can find a ".env.template" file. 
 <br />
 It contains the properties of your database.
 Replace that for your own .env file. <br />The structure of the .env is also displayed there.

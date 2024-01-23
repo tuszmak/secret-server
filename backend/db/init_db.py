@@ -1,15 +1,11 @@
 import os
 import sys
 
-
-from dotenv import load_dotenv
 from .getConn import getConn
 import psycopg2
-load_dotenv()
-def init():
+def init(envVariables):
         
-        print(os.environ.get('DB_USERNAME'))
-        conn = getConn()
+        conn = getConn(envVariables)
         
         # Open a cursor to perform database operations
         cur = conn.cursor()
@@ -24,6 +20,5 @@ def init():
         
         
         conn.commit()
-        
         cur.close()
         
