@@ -44,4 +44,3 @@ env.bak/
 venv.bak/
 __pycache__
 frontend/api/.venv
-frontend/api
